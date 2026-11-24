@@ -1,0 +1,108 @@
+import { Article, Course, doc } from './model';
+const titles = [
+  [
+    'chatgpt-work',
+    'ChatGPT를 켜기 전에,\n질문부터 바꿔보세요',
+    'AI 업무 활용',
+    'mint',
+    '같은 도구를 써도 결과가 다른 이유. 원하는 답을 얻는 질문의 구조를 알아봅니다.',
+  ],
+  [
+    'ai-research',
+    '검색으로 끝내지 않는\nAI 리서치 방법',
+    '생산성',
+    'blue',
+    '흩어진 정보를 모으고, 비교하고, 나만의 인사이트로 정리하는 과정.',
+  ],
+  [
+    'image-prompt',
+    '생각을 이미지로 만드는\n프롬프트의 기본',
+    '이미지 생성',
+    'peach',
+    '막연한 아이디어를 구체적인 장면으로 바꾸는 작은 연습.',
+  ],
+  [
+    'automation-start',
+    '반복 업무를 줄이는\n자동화의 첫걸음',
+    '자동화',
+    'lilac',
+    '매일 하는 일 하나부터. 자동화할 일을 찾는 기준을 소개합니다.',
+  ],
+  [
+    'ai-writing',
+    '내 목소리를 잃지 않는\nAI 글쓰기',
+    'AI 업무 활용',
+    'yellow',
+    '초안은 빠르게, 관점은 선명하게. AI와 함께 쓰는 글의 원칙.',
+  ],
+  [
+    'ai-tools',
+    '나에게 맞는 AI 도구,\n어떻게 고를까요?',
+    'AI 입문',
+    'gray',
+    '도구의 개수보다 중요한 건 내 일에 맞는 하나를 찾는 일입니다.',
+  ],
+];
+export const demoArticles: Article[] = titles.map((a, i) => ({
+  id: `demo-${i}`,
+  slug: a[0],
+  title: a[1].replace('\n', ' '),
+  category: a[2],
+  theme: a[3],
+  excerpt: a[4],
+  cover: null,
+  read_minutes: 4 + (i % 3),
+  published_at: '2026-11-25T00:00:00Z',
+  status: 'published',
+  preview: doc(
+    a[4],
+    'AI를 잘 사용하는 시작은 기술을 많이 아는 데 있지 않습니다. 지금 해결하고 싶은 문제를 정확히 표현하는 데 있습니다.',
+  ),
+  body: doc(
+    a[4],
+    'AI를 잘 사용하는 시작은 기술을 많이 아는 데 있지 않습니다. 지금 해결하고 싶은 문제를 정확히 표현하는 데 있습니다.',
+    '먼저 목표, 맥락, 결과물의 형태를 분리해서 적어보세요. “글을 써줘” 대신 누구에게 어떤 메시지를 전달할지 정하면 결과가 달라집니다.',
+    '첫 답변을 완성본으로 생각하지 마세요. 부족한 조건을 보태고, 실제 사례를 넣고, 사실을 확인하는 과정이 필요합니다.',
+    '오늘 반복하는 작업 하나를 골라 이 방법을 적용해보세요. 작은 성공을 쌓는 것이 가장 좋은 학습 방법입니다.',
+  ),
+}));
+export const demoCourses: Course[] = [
+  {
+    id: 'course-1',
+    slug: 'ai-workflow',
+    title: '일 잘하는 사람의 AI 워크플로',
+    description: '기획부터 문서 작성까지, 내 업무에 바로 적용하는 AI 활용법.',
+    category: 'AI 업무 활용',
+    theme: 'dark',
+    status: 'published',
+    lessons: [
+      'AI와 일하는 방식부터 바꾸기',
+      '답변의 질을 바꾸는 질문 설계',
+      '자료 조사와 근거 확인',
+      '보고서 초안에서 완성까지',
+      '나만의 업무 워크플로 만들기',
+    ].map((title, i) => ({
+      id: `lesson-${i}`,
+      course_id: 'course-1',
+      title,
+      position: i + 1,
+      duration: `${12 + i * 3}:00`,
+    })),
+  },
+  {
+    id: 'course-2',
+    slug: 'creative-ai',
+    title: '아이디어를 현실로, 생성형 AI',
+    description: '이미지와 콘텐츠 제작의 기본을 차근차근 배웁니다.',
+    category: '이미지 생성',
+    theme: 'lilac',
+    status: 'published',
+    lessons: ['이미지 생성의 기본', '스타일과 구도 설계', '콘텐츠에 활용하기'].map((title, i) => ({
+      id: `creative-${i}`,
+      course_id: 'course-2',
+      title,
+      position: i + 1,
+      duration: '15:00',
+    })),
+  },
+];
